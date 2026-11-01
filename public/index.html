@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b2a7a" />
+  <title>Dashen Bank AI Account Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <!-- Desktop-only journey guide -->
+  <aside class="guide" aria-label="Account opening journey">
+    <h2>AI Video Account Opening</h2>
+    <p class="muted">Python · LangChain · FastAPI demo</p>
+    <ol id="journey">
+      <li data-s="home">Super App home – tap “Create Account”</li>
+      <li data-s="greeting">Video call starts – AI greets you</li>
+      <li data-s="full_name">Question 1 – Full name</li>
+      <li data-s="date_of_birth">Question 2 – Date of birth</li>
+      <li data-s="birth_city">Question 3 – Birth city (+ nationality, account type)</li>
+      <li data-s="fan">National ID – enter FAN</li>
+      <li data-s="otp">OTP from National ID</li>
+      <li data-s="review">Review retrieved data</li>
+      <li data-s="creating">Account creation</li>
+      <li data-s="done">Success – account details</li>
+    </ol>
+    <div class="tip">
+      <strong>Test data</strong><br />
+      FAN <code>1234 5678 9012</code> → Betelhem Tesfaye Alemu, Jan 15 2000, Addis Ababa.<br />
+      Any other 12-digit FAN works too (uses your answers). The OTP is shown in a demo banner.
+    </div>
+    <p class="muted small" id="llmMode"></p>
+  </aside>
+
+  <main class="phone" id="phone">
+    <!-- ========== 1. HOME ========== -->
+    <section class="screen active" id="screen-home">
+      <header class="home-hero">
+        <div class="statusbar"><span>12:00</span><span class="sb-icons">▂▄▆ ◔</span></div>
+        <div class="brand center">
+          <svg class="logo" viewBox="0 0 48 40" aria-hidden="true"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg>
+          <div class="brand-text"><b>Dashen Bank</b><span>Dashen Bank</span></div>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="en" class="on">EN</button><button data-lang="am">አማ</button>
+        </div>
+        <h1 data-i18n="welcome">Welcome to<br />Dashen Bank<br />Super App</h1>
+      </header>
+      <div class="home-body">
+        <div class="tiles">
+          <button class="tile primary" id="btnCreate"><span class="ico">👤＋</span><span data-i18n="create">Create Account</span></button>
+          <button class="tile demo-only"><span class="ico">👤</span><span data-i18n="login">Login</span></button>
+          <button class="tile demo-only"><span class="ico">💸</span><span data-i18n="send">Send Money</span></button>
+          <button class="tile demo-only"><span class="ico">🧾</span><span data-i18n="bills">Pay Bills</span></button>
+          <button class="tile demo-only"><span class="ico">📱</span><span data-i18n="topup">Mobile Top-up</span></button>
+          <button class="tile demo-only"><span class="ico">⋯</span><span data-i18n="more">More</span></button>
+        </div>
+        <button class="promo" id="btnPromo">
+          <div class="promo-img">🏦</div>
+          <div class="promo-text" data-i18n="promo">Open your account in minutes with <b>AI Video Assistant</b></div>
+          <span class="chev">›</span>
+        </button>
+      </div>
+      <nav class="tabbar"><span class="on">⌂<small>Home</small></span><span>▦<small>Services</small></span><span>☏<small>Support</small></span><span>⋯<small>More</small></span></nav>
+    </section>
+
+    <!-- ========== 2–6. VIDEO CALL ========== -->
+    <section class="screen" id="screen-call">
+      <header class="bar dark">
+        <button class="icon-btn back" data-back aria-label="Back">‹</button>
+        <div class="brand">
+          <svg class="logo" viewBox="0 0 48 40" aria-hidden="true"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg>
+          <div class="brand-text"><b>Dashen Bank</b><span data-i18n="aiAssistant">AI Account Assistant</span></div>
+        </div>
+        <span class="rec" id="callTimer">00:00</span>
+      </header>
+
+      <div class="video">
+        <div class="office-bg"></div>
+        <svg id="avatar" class="avatar" viewBox="0 0 300 360" aria-label="AI assistant avatar">
+          <defs>
+            <radialGradient id="skin" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#9a6646"/><stop offset="1" stop-color="#7a4b31"/></radialGradient>
+          </defs>
+          <!-- hair back -->
+          <path d="M70 150c-10-70 30-118 82-118s92 46 82 118c-4 40 14 70 4 96-30-6-40-30-44-58H112c-4 28-14 52-44 58-10-26 6-56 2-96z" fill="#1b120d"/>
+          <!-- neck -->
+          <path d="M130 215h40v35h-40z" fill="#7a4b31"/>
+          <!-- blazer -->
+          <path d="M40 360c4-62 40-96 92-108l18 30 18-30c52 12 88 46 92 108z" fill="#12307a"/>
+          <!-- scarf -->
+          <path d="M120 250l30 34 30-34 10 14-40 40-40-40z" fill="#e9f0ff"/>
+          <path d="M136 262l14 16 14-16 6 8-20 22-20-22z" fill="#2563eb"/>
+          <path d="M218 300l14-8 6 12-14 6z" fill="#f5b400"/>
+          <!-- face -->
+          <ellipse cx="150" cy="150" rx="56" ry="70" fill="url(#skin)"/>
+          <!-- hair front -->
+          <path d="M92 140c0-50 26-84 64-84 36 0 60 26 62 70-26-6-54-26-66-48-10 30-34 52-60 62z" fill="#1b120d"/>
+          <!-- eyes -->
+          <g class="eyes"><ellipse cx="128" cy="150" rx="7" ry="5" fill="#1a0f0a"/><ellipse cx="172" cy="150" rx="7" ry="5" fill="#1a0f0a"/></g>
+          <path d="M116 136q12-7 24 0M160 136q12-7 24 0" stroke="#1b120d" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M150 160l-5 20h10" stroke="#5e3722" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- mouth -->
+          <ellipse id="mouth" cx="150" cy="196" rx="15" ry="3" fill="#7a1f2b"/>
+          <path d="M136 194q14 8 28 0" stroke="#5e1820" stroke-width="2" fill="none"/>
+          <!-- earrings -->
+          <circle cx="94" cy="170" r="4" fill="#f5d36b"/><circle cx="206" cy="170" r="4" fill="#f5d36b"/>
+        </svg>
+        <video id="selfView" class="self-view" autoplay playsinline muted hidden></video>
+
+        <div class="bubble" id="bubble" aria-live="polite"></div>
+      </div>
+
+      <!-- dynamic input panel -->
+      <div class="panel" id="panel">
+        <!-- greeting -->
+        <div class="pane" data-pane="greeting">
+          <button class="btn primary block" id="btnStart" data-i18n="startYes">Yes, let's get started</button>
+        </div>
+        <!-- voice / text -->
+        <div class="pane" data-pane="voice">
+          <div class="voicebar">
+            <button class="mic" id="btnMic" aria-label="Speak"><span>🎙</span></button>
+            <div class="wave" id="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <form class="field-row" id="formText">
+            <span class="field-ico" id="textIco">✎</span>
+            <input id="inText" autocomplete="off" />
+            <button class="btn primary" data-i18n="send2">Send</button>
+          </form>
+        </div>
+        <!-- date -->
+        <form class="pane" data-pane="date" id="formDate">
+          <label class="field-row"><span class="field-ico">📅</span><input type="date" id="inDate" required /></label>
+          <button class="btn primary block" data-i18n="confirm">Confirm</button>
+          <button type="button" class="link" data-speak data-i18n="orSpeak">or answer by voice 🎙</button>
+        </form>
+        <!-- choice -->
+        <div class="pane" data-pane="choice">
+          <div class="chips" id="chips"></div>
+          <form class="field-row" id="formChoice">
+            <span class="field-ico" id="choiceIco">📍</span>
+            <input id="inChoice" autocomplete="off" />
+            <button class="btn primary" data-i18n="confirm">Confirm</button>
+          </form>
+          <button type="button" class="link" data-speak data-i18n="orSpeak">or answer by voice 🎙</button>
+        </div>
+        <!-- FAN -->
+        <form class="pane" data-pane="fan" id="formFan">
+          <label class="lbl" for="inFan" data-i18n="fanLabel">FAN (National ID Number)</label>
+          <label class="field-row"><span class="field-ico">🪪</span><input id="inFan" inputmode="numeric" placeholder="1234 5678 9012" maxlength="14" required /></label>
+          <button class="btn primary block" data-i18n="continue">Continue</button>
+        </form>
+
+        <div class="call-controls">
+          <button class="cc" id="ccMute" aria-label="Mute assistant voice">🔊</button>
+          <button class="cc" id="ccCam" aria-label="Toggle camera">📷</button>
+          <button class="cc end" id="ccEnd" aria-label="End call">✆</button>
+          <button class="cc" id="ccCaptions" aria-label="Toggle captions">CC</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 7. OTP ========== -->
+    <section class="screen light" id="screen-otp">
+      <header class="bar dark">
+        <button class="icon-btn back" data-back aria-label="Back">‹</button>
+        <div class="brand"><svg class="logo" viewBox="0 0 48 40"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg><div class="brand-text"><b>Dashen Bank</b><span>Super App</span></div></div>
+        <span></span>
+      </header>
+      <div class="content center-col">
+        <div class="shield">🛡️</div>
+        <h2 data-i18n="otpTitle">Verify with OTP</h2>
+        <p class="muted" id="otpText"></p>
+        <div class="demo-banner" id="demoOtp" hidden></div>
+        <form id="formOtp" class="otp-form">
+          <div class="otp" id="otpBoxes">
+            <input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" /><input inputmode="numeric" maxlength="1" />
+          </div>
+          <p class="muted small"><span data-i18n="noOtp">Didn't receive the OTP?</span> <button type="button" class="link" id="btnResend" disabled>Resend (60s)</button></p>
+          <p class="error" id="otpError" aria-live="polite"></p>
+          <button class="btn primary block" data-i18n="verifyOtp">Verify OTP</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========== 8. REVIEW ========== -->
+    <section class="screen light" id="screen-review">
+      <header class="bar dark">
+        <span></span>
+        <div class="brand"><svg class="logo" viewBox="0 0 48 40"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg><div class="brand-text"><b>Dashen Bank</b><span>Super App</span></div></div>
+        <span></span>
+      </header>
+      <div class="content">
+        <h2 class="center" data-i18n="reviewTitle">Confirm Your Information</h2>
+        <p class="muted center" data-i18n="reviewText">We retrieved the following details from the National ID database. Please review and confirm.</p>
+        <dl class="review" id="reviewList"></dl>
+        <p class="warn" id="reviewWarn" hidden></p>
+        <div class="row2">
+          <button class="btn outline" id="btnEdit" data-i18n="edit">Edit</button>
+          <button class="btn primary" id="btnConfirm" data-i18n="confirmCreate">Confirm &amp; Create Account</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 9. CREATING ========== -->
+    <section class="screen light" id="screen-creating">
+      <header class="bar dark"><span></span><div class="brand"><svg class="logo" viewBox="0 0 48 40"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg><div class="brand-text"><b>Dashen Bank</b><span>Super App</span></div></div><span></span></header>
+      <div class="content center-col">
+        <div class="ring"><span>🏛</span></div>
+        <h2 data-i18n="creatingTitle">Creating Your Account…</h2>
+        <ul class="progress" id="progress"></ul>
+      </div>
+    </section>
+
+    <!-- ========== 10. SUCCESS ========== -->
+    <section class="screen light" id="screen-done">
+      <header class="bar dark"><span></span><div class="brand"><svg class="logo" viewBox="0 0 48 40"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg><div class="brand-text"><b>Dashen Bank</b><span>Super App</span></div></div><span></span></header>
+      <div class="content center-col">
+        <div class="check">✓</div>
+        <h2 data-i18n="successTitle">Account Created Successfully! 🎉</h2>
+        <p class="muted" data-i18n="successText">Your Dashen Bank account is now active. You can start using it immediately.</p>
+        <div class="acct">
+          <small data-i18n="acctNo">Account Number</small>
+          <div class="acct-no"><b id="acctNo"></b><button class="icon-btn" id="btnCopy" aria-label="Copy">⧉</button></div>
+          <small data-i18n="acctType">Account Type</small>
+          <b id="acctType"></b>
+        </div>
+        <button class="btn primary block" id="btnMyAccount" data-i18n="goAccount">Go to My Account</button>
+        <button class="btn outline block" id="btnDownload" data-i18n="download">⤓ Download Account Details</button>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

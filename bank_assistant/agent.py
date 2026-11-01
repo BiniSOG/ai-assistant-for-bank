@@ -25,7 +25,7 @@ from pydantic import BaseModel, Field
 
 from . import accounts, config, registry
 from .llm import build_chat_model
-from .messages import ACKS, t
+from .messages import ACKS, LANGUAGES, t
 from .state import QUESTION_STEPS, OnboardingState
 from .validators import PARSERS, format_fan, parse_otp, yes_no
 
@@ -66,7 +66,8 @@ FIELD_SPECS: dict[str, str] = {
 
 SYSTEM_PROMPT = """You are the Dashen Bank AI Account Assistant, a friendly video-call agent \
 that helps customers in Ethiopia open a bank account in the Dashen Bank Super App.
-The conversation language is {language}.
+The conversation language is {language}. The customer may answer in {language}, English or Amharic;
+always write `reply` in {language}.
 
 You are currently asking for: {step}
 Field specification: {field_spec}
@@ -109,7 +110,7 @@ def interpretation_chain() -> Runnable:
     )
     to_prompt_vars = RunnableLambda(
         lambda inp: {
-            "language": "Amharic" if inp["lang"] == "am" else "English",
+            "language": LANGUAGES.get(inp["lang"], "English"),
             "step": inp["step"],
             "field_spec": FIELD_SPECS.get(inp["step"], ""),
             "message": inp["message"],
@@ -145,7 +146,7 @@ def _next_step(step: str) -> str:
 
 
 def start(lang: str = "en") -> tuple[OnboardingState, Turn]:
-    state = OnboardingState(lang="am" if lang == "am" else "en")
+    state = OnboardingState(lang=lang if lang in LANGUAGES else "en")
     return state, Turn(question_for(state))
 
 

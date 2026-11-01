@@ -15,6 +15,8 @@ from pydantic import BaseModel, Field
 
 from . import config
 
+Lang = Literal["en", "am", "om", "ti", "so", "aa"]
+
 Step = Literal[
     "greeting",
     "full_name",
@@ -51,7 +53,7 @@ class IdentityRecord(BaseModel):
 
 class OnboardingState(BaseModel):
     step: Step = "greeting"
-    lang: Literal["en", "am"] = "en"
+    lang: Lang = "en"
 
     full_name: str | None = None
     date_of_birth: str | None = None

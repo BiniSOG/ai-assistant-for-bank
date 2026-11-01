@@ -54,11 +54,137 @@
       progress: ["ማንነትን በማረጋገጥ ላይ (ብሔራዊ መታወቂያ)", "መረጃዎን በማምጣት ላይ", "የዳሽን ባንክ ሂሳብ በመክፈት ላይ", "መገለጫዎን በማዘጋጀት ላይ"],
       you: "እርስዎ",
     },
+    om: {
+      welcome: "Baga nagaan<br>Daashin Baankii<br>Super App dhuftan", create: "Herrega Bani", login: "Seeni",
+      send: "Maallaqa Ergi", bills: "Kaffaltii", topup: "Kaardii Bilbilaa", more: "Dabalata",
+      promo: "<b>Gargaaraa Viidiyoo AI</b>'tiin daqiiqaa muraasa keessatti herrega keessan banadhaa",
+      aiAssistant: "Gargaaraa Herregaa AI", startYes: "Eeyyee, haa jalqabnu", send2: "Ergi",
+      confirm: "Mirkaneessi", orSpeak: "ykn sagaleen deebisaa 🎙", fanLabel: "FAN (Lakkoofsa Eenyummaa Biyyaalessaa)",
+      continue: "Itti fufi", otpTitle: "OTP'n Mirkaneessaa", noOtp: "OTP hin arganne?",
+      verifyOtp: "OTP Mirkaneessi", reviewTitle: "Odeeffannoo Keessan Mirkaneessaa",
+      reviewText: "Odeeffannoo armaan gadii galmee Eenyummaa Biyyaalessaa irraa argachuu dandeenyeerra. Maaloo ilaalaatii mirkaneessaa.",
+      edit: "Sirreessi", confirmCreate: "Mirkaneessi & Herrega Bani", creatingTitle: "Herregni keessan banamaa jira…",
+      successTitle: "Herregni milkaa'inaan banameera! 🎉",
+      successText: "Herregni Baankii Daashin keessanii amma hojii irra jira. Battalumatti fayyadamuu ni dandeessu.",
+      acctNo: "Lakkoofsa Herregaa", acctType: "Gosa Herregaa", goAccount: "Gara Herrega Kootti",
+      download: "⤓ Odeeffannoo Herregaa Buusi", resend: "Irra deebi'ii ergi", typeName: "Maqaa guutuu barreessaa…",
+      typeAnswer: "Deebii keessan barreessaa…", cityPh: "Finfinnee", natPh: "Itoophiyaa", acctPh: "Qusannaa",
+      otpText: "Jecha icciitii yeroo tokkoo (OTP) lakkoofsa bilbilaa keessan kan Eenyummaa Biyyaalessaatti galmaa'etti ergineerra",
+      demoOtp: "Haala yaalii – SMS hin jiru. OTP keessan", demoOnly: "Yaalii: \u201cHerrega Bani\u201d qofatu hojjeta.",
+      fullName: "Maqaa Guutuu", dob: "Guyyaa Dhalootaa", city: "Magaalaa Dhalootaa", nationality: "Lammummaa",
+      fan: "FAN", type: "Gosa Herregaa", mismatch: "Waan gargaaraaf himtan irraa adda",
+      mismatchNote: "Odeeffannoon tokko tokko waan gargaaraaf himtan irraa adda. Galmeen Eenyummaa Biyyaalessaa ni fayyadama.",
+      endCall: "Bilbila xumuruun gara fuula jalqabaa deebi'uu?", copied: "Lakkoofsi herregaa garagalfameera",
+      noSpeech: "Sagaleen galchuun browser kana irratti hin hojjetu – maaloo barreessaa.",
+      progress: ["Eenyummaa mirkaneessaa jira (Eenyummaa Biyyaalessaa)", "Odeeffannoo keessan fidaa jira", "Herrega Baankii Daashin banaa jira", "Piroofaayilii keessan qopheessaa jira"],
+      you: "Isin", yesMsg: "Eeyyee",
+    },
+    ti: {
+      welcome: "ናብ<br>ዳሽን ባንክ<br>ሱፐር ኣፕ እንቋዕ ብደሓን መጻእኩም", create: "ሕሳብ ክፈቱ", login: "እተዉ",
+      send: "ገንዘብ ስደዱ", bills: "ክፍሊታት", topup: "ካርድ ስልኪ", more: "ተወሳኺ",
+      promo: "ብ<b>AI ቪድዮ ሓጋዚ</b> ኣብ ውሽጢ ደቓይቕ ሕሳብኩም ክፈቱ",
+      aiAssistant: "AI ናይ ሕሳብ ሓጋዚ", startYes: "እወ፣ ንጀምር", send2: "ስደድ", confirm: "ኣረጋግጽ",
+      orSpeak: "ወይ ብድምጺ መልሱ 🎙", fanLabel: "FAN (ቁጽሪ ሃገራዊ መንነት)", continue: "ቀጽል",
+      otpTitle: "ብOTP ኣረጋግጹ", noOtp: "OTP ኣይበጽሓኩምን?", verifyOtp: "OTP ኣረጋግጽ",
+      reviewTitle: "ሓበሬታኹም ኣረጋግጹ",
+      reviewText: "ዝስዕብ ሓበሬታ ካብ ሃገራዊ መንነት መዝገብ ረኺብና። በጃኹም ገምጊምኩም ኣረጋግጹ።",
+      edit: "ኣስተኻኽል", confirmCreate: "ኣረጋግጽን ሕሳብ ክፈትን", creatingTitle: "ሕሳብኩም ይኽፈት ኣሎ…",
+      successTitle: "ሕሳብኩም ብዓወት ተኸፊቱ! 🎉",
+      successText: "ናይ ዳሽን ባንክ ሕሳብኩም ሕጂ ንጡፍ እዩ። ብቕጽበት ክትጥቀሙሉ ትኽእሉ ኢኹም።",
+      acctNo: "ቁጽሪ ሕሳብ", acctType: "ዓይነት ሕሳብ", goAccount: "ናብ ሕሳበይ ኪድ",
+      download: "⤓ ሓበሬታ ሕሳብ ኣውርድ", resend: "ደጊምካ ስደድ", typeName: "ምሉእ ስምኩም ጽሓፉ…",
+      typeAnswer: "መልስኹም ጽሓፉ…", cityPh: "መቐለ", natPh: "ኢትዮጵያዊ", acctPh: "ቁጠባ",
+      otpText: "ኣብ ሃገራዊ መንነት ናብ ዝተመዝገበ ቁጽሪ ስልኪኹም ናይ ሓደ ግዜ መሕለፊ ቃል (OTP) ልኢኽና",
+      demoOtp: "ናይ ፈተነ ኩነታት – SMS የለን። OTP ኹም", demoOnly: "ፈተነ፦ \u201cሕሳብ ክፈቱ\u201d ጥራይ እዩ ዝሰርሕ።",
+      fullName: "ምሉእ ስም", dob: "ዕለት ልደት", city: "ከተማ ልደት", nationality: "ዜግነት",
+      fan: "FAN", type: "ዓይነት ሕሳብ", mismatch: "ንሓጋዚ ካብ ዝበልኩምዎ ይፈላለ",
+      mismatchNote: "ገለ ሓበሬታ ንሓጋዚ ካብ ዝበልኩምዎ ይፈላለ። ናይ ሃገራዊ መንነት መዝገብ ክጥቀመሉ እዩ።",
+      endCall: "ጻውዒት ወዲእኩም ናብ መበገሲ ገጽ ክትምለሱ?", copied: "ቁጽሪ ሕሳብ ተቐዲሑ",
+      noSpeech: "እዚ ብራውዘር ድምጺ ኣይቕበልን – በጃኹም ጽሓፉ።",
+      progress: ["መንነት የረጋግጽ ኣሎ (ሃገራዊ መንነት)", "ሓበሬታኹም የምጽእ ኣሎ", "ናይ ዳሽን ባንክ ሕሳብ ይኸፍት ኣሎ", "ፕሮፋይልኩም የዳሉ ኣሎ"],
+      you: "ንስኹም", yesMsg: "እወ",
+    },
+    so: {
+      welcome: "Ku soo dhawoow<br>Bangiga Dashen<br>Super App", create: "Fur Akoon", login: "Gal",
+      send: "Lacag Dir", bills: "Bixi Biilasha", topup: "Kaarka Taleefanka", more: "Wax kale",
+      promo: "Ku fur akoonkaaga daqiiqado gudahood adigoo isticmaalaya <b>Kaaliyaha Fiidiyowga AI</b>",
+      aiAssistant: "Kaaliyaha Akoonka AI", startYes: "Haa, aan bilowno", send2: "Dir", confirm: "Xaqiiji",
+      orSpeak: "ama cod ku jawaab 🎙", fanLabel: "FAN (Lambarka Aqoonsiga Qaranka)", continue: "Sii wad",
+      otpTitle: "Ku xaqiiji OTP", noOtp: "OTP ma helin?", verifyOtp: "Xaqiiji OTP",
+      reviewTitle: "Xaqiiji Xogtaada",
+      reviewText: "Xogtan soo socota waxaan ka helnay diiwaanka Aqoonsiga Qaranka. Fadlan dib u eeg oo xaqiiji.",
+      edit: "Wax ka beddel", confirmCreate: "Xaqiiji & Fur Akoonka", creatingTitle: "Akoonkaaga waa la furayaa…",
+      successTitle: "Akoonka si guul leh ayaa loo furay! 🎉",
+      successText: "Akoonkaaga Bangiga Dashen hadda waa firfircoon yahay. Isla markiiba waad isticmaali kartaa.",
+      acctNo: "Lambarka Akoonka", acctType: "Nooca Akoonka", goAccount: "Tag Akoonkayga",
+      download: "⤓ Soo deji Faahfaahinta Akoonka", resend: "Dib u dir", typeName: "Qor magacaaga oo buuxa…",
+      typeAnswer: "Qor jawaabtaada…", cityPh: "Jigjiga", natPh: "Itoobiyaan", acctPh: "Kaydin",
+      otpText: "Waxaan eray-sir hal mar ah (OTP) u dirnay lambarka taleefankaaga ee ku diiwaangashan Aqoonsiga Qaranka",
+      demoOtp: "Hab tijaabo – SMS ma jiro. OTP-gaagu waa", demoOnly: "Tijaabo: \u201cFur Akoon\u201d keliya ayaa shaqeeya.",
+      fullName: "Magaca Buuxa", dob: "Taariikhda Dhalashada", city: "Magaalada Dhalashada", nationality: "Jinsiyadda",
+      fan: "FAN", type: "Nooca Akoonka", mismatch: "Way ka duwan tahay wixii aad u sheegtay kaaliyaha",
+      mismatchNote: "Xogta qaar way ka duwan tahay wixii aad u sheegtay kaaliyaha. Diiwaanka Aqoonsiga Qaranka ayaa la isticmaali doonaa.",
+      endCall: "Ma dhammeysaa wicitaanka oo ku laabanaysaa bogga hore?", copied: "Lambarka akoonka waa la koobiyeeyay",
+      noSpeech: "Browser-kan ma taageero codka – fadlan qor.",
+      progress: ["Xaqiijinta aqoonsiga (Aqoonsiga Qaranka)", "Soo saarista xogtaada", "Furitaanka akoonka Bangiga Dashen", "Diyaarinta astaantaada"],
+      you: "Adiga", yesMsg: "Haa",
+    },
+    aa: { // draft – review with a native Afar speaker
+      welcome: "Dashen Baanki<br>Super App fan<br>nagayat tamaateen", create: "Akaawunti Fak", login: "Gal",
+      send: "Lacag Ruub", bills: "Kaffaltii", topup: "Taleefoon Kaardi", more: "Kaxxa",
+      promo: "<b>AI Video Kaalitih</b> luk ku akaawunti dagoo daqiiqat fak",
+      aiAssistant: "AI Akaawunti Kaalitiyya", startYes: "Ey, qimbisna", send2: "Ruub", confirm: "Xiinis",
+      orSpeak: "hinnay yangula luk gacis 🎙", fanLabel: "FAN (National ID Number)", continue: "Gufus",
+      otpTitle: "OTP luk xiinis", noOtp: "OTP maageenno?", verifyOtp: "OTP xiinis",
+      reviewTitle: "Ku Mangaqo Xiinis", reviewText: "National ID addak beyneh mangaqo. Ablay kee xiinis.",
+      edit: "Cusbis", confirmCreate: "Xiinis & Akaawunti Fak", creatingTitle: "Ku akaawunti fakkeenimtaah tan…",
+      successTitle: "Ku akaawunti fakkeeniyye! 🎉", successText: "Ku Dashen Baanki akaawunti away taamitah tan.",
+      acctNo: "Akaawunti Lowo", acctType: "Akaawunti Gita", goAccount: "Yi Akaawunti fan",
+      download: "⤓ Akaawunti mangaqo oobis", resend: "Qusbah ruub", typeName: "Ku migaq inkih uktub…",
+      typeAnswer: "Ku gaca uktub…", cityPh: "Samara", natPh: "Ethiopian", acctPh: "Savings",
+      otpText: "National ID addal ku taleefoon lowot inki-ruuq OTP ruubenno",
+      demoOtp: "Demo – SMS mali. Ku OTP", demoOnly: "Demo: \u201cAkaawunti Fak\u201d inkih taamita.",
+      fullName: "Migaq Inkih", dob: "Dalwa Ayro", city: "Dalwa Magaala", nationality: "Baaxo",
+      fan: "FAN", type: "Akaawunti Gita", mismatch: "Kaalitih warisseemik baxsa le",
+      mismatchNote: "Mangaqo tiya kaalitih warisseemik baxsa le. National ID mangaqo taamita.",
+      endCall: "Seec gacsit, awwal page fan gacta?", copied: "Akaawunti lowo kopi tekke",
+      noSpeech: "Browser yangula ma taamita – uktub.",
+      progress: ["Agata xiinisaah (National ID)", "Ku mangaqo beyaah", "Dashen Baanki akaawunti fakaah", "Ku profile massossaah"],
+      you: "Atu", yesMsg: "Ey",
+    },
   };
+  UI.en.yesMsg = "Yes, let's get started"; UI.am.yesMsg = "አዎ";
+  // Web Speech API codes (speech recognition / synthesis support varies by browser).
+  const SPEECH_LANG = { en: "en-US", am: "am-ET", om: "om-ET", ti: "ti-ET", so: "so-SO", aa: "aa-ET" };
+  // Chip labels per language; the English value (same index) is what gets sent.
   const CHOICES = {
-    birth_city: { en: ["Addis Ababa", "Dire Dawa", "Bahir Dar", "Hawassa", "Mekelle", "Gondar", "Adama"], am: ["አዲስ አበባ", "ድሬ ዳዋ", "ባህር ዳር", "ሀዋሳ", "መቀሌ", "ጎንደር", "አዳማ"], ico: "📍" },
-    nationality: { en: ["Ethiopian", "Kenyan", "Eritrean", "Djiboutian"], am: ["ኢትዮጵያዊ", "Kenyan", "Eritrean", "Djiboutian"], ico: "🌍" },
-    account_type: { en: ["Savings Account", "Current Account", "Interest-Free (Wadiah) Savings", "Fixed Time Deposit"], am: ["ቁጠባ", "ተንቀሳቃሽ", "ከወለድ ነፃ (ወዲአህ) ቁጠባ", "የጊዜ ገደብ ተቀማጭ"], ico: "🏦" },
+    birth_city: {
+      ico: "📍",
+      en: ["Addis Ababa", "Dire Dawa", "Bahir Dar", "Hawassa", "Mekelle", "Adama", "Jijiga", "Semera"],
+      am: ["አዲስ አበባ", "ድሬ ዳዋ", "ባህር ዳር", "ሀዋሳ", "መቀሌ", "አዳማ", "ጅጅጋ", "ሰመራ"],
+      om: ["Finfinnee", "Dirree Dawaa", "Bahir Dar", "Hawaasaa", "Maqalee", "Adaamaa", "Jigjigaa", "Samaraa"],
+      ti: ["ኣዲስ ኣበባ", "ድሬ ዳዋ", "ባሕር ዳር", "ሃዋሳ", "መቐለ", "ኣዳማ", "ጅጅጋ", "ሰመራ"],
+      so: ["Addis Ababa", "Diridhabe", "Bahir Dar", "Hawassa", "Mekelle", "Adama", "Jigjiga", "Samara"],
+      aa: ["Addis Ababa", "Dire Dawa", "Bahir Dar", "Hawassa", "Mekelle", "Adama", "Jigjiga", "Samara"],
+    },
+    nationality: {
+      ico: "🌍",
+      en: ["Ethiopian", "Kenyan", "Eritrean", "Djiboutian", "Somali"],
+      am: ["ኢትዮጵያዊ", "ኬንያዊ", "ኤርትራዊ", "ጅቡቲያዊ", "ሶማሊያዊ"],
+      om: ["Itoophiyaa", "Keeniyaa", "Eertiraa", "Jibuutii", "Somaaliyaa"],
+      ti: ["ኢትዮጵያዊ", "ኬንያዊ", "ኤርትራዊ", "ጅቡቲያዊ", "ሶማልያዊ"],
+      so: ["Itoobiyaan", "Kenyaan", "Eritrean", "Jabuutiyaan", "Soomaali"],
+      aa: ["Ethiopian", "Kenyan", "Eritrean", "Djiboutian", "Somali"],
+    },
+    account_type: {
+      ico: "🏦",
+      en: ["Savings Account", "Current Account", "Interest-Free (Wadiah) Savings", "Fixed Time Deposit"],
+      am: ["ቁጠባ", "ተንቀሳቃሽ", "ከወለድ ነፃ (ወዲአህ) ቁጠባ", "የጊዜ ገደብ ተቀማጭ"],
+      om: ["Qusannaa", "Herrega Deddeebii", "Qusannaa Dhala Malee (Wadiah)", "Kuusaa Yeroo Murtaa'e"],
+      ti: ["ቁጠባ", "ተንቀሳቓሲ", "ብዘይ ወለድ (ዋዲዓ) ቁጠባ", "ናይ ግዜ ገደብ ተቐማጢ"],
+      so: ["Kaydin", "Akoon Socda", "Kaydin aan Ribo lahayn (Wadiah)", "Dhigaal Muddo Go'an"],
+      aa: ["Savings", "Current", "Interest-Free (Wadiah)", "Fixed Time Deposit"],
+    },
   };
 
   // ------------------------------------------------------------------ app state
@@ -70,7 +196,7 @@
   function applyI18n() {
     document.documentElement.lang = S.lang;
     $$("[data-i18n]").forEach((el) => { el.innerHTML = L(el.dataset.i18n); });
-    $$(".lang-toggle button").forEach((b) => b.classList.toggle("on", b.dataset.lang === S.lang));
+    $("#langSelect").value = S.lang;
   }
 
   function toast(msg) {
@@ -124,7 +250,7 @@
   function pickVoice() {
     if (!("speechSynthesis" in window)) return null;
     const voices = speechSynthesis.getVoices();
-    const want = S.lang === "am" ? ["am"] : ["en-GB", "en-US", "en"];
+    const want = S.lang === "en" ? ["en-GB", "en-US", "en"] : [S.lang];
     for (const w of want) {
       const fem = voices.find((v) => v.lang.startsWith(w) && /female|samantha|zira|libby|sonia|aria|jenny/i.test(v.name));
       const any = voices.find((v) => v.lang.startsWith(w));
@@ -143,7 +269,7 @@
     const fallbackTalk = () => { avatar.classList.add("talking"); clearTimeout(say._t); say._t = setTimeout(() => avatar.classList.remove("talking"), Math.min(6000, 60 * clean.length)); };
     if (S.muted || !("speechSynthesis" in window)) return fallbackTalk();
     const voice = pickVoice();
-    if (S.lang === "am" && !voice) return fallbackTalk(); // no Amharic voice installed
+    if (S.lang !== "en" && !voice) return fallbackTalk(); // no voice installed for this language – captions only
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(clean);
     if (voice) { u.voice = voice; u.lang = voice.lang; }
@@ -161,7 +287,7 @@
     if (rec) { rec.stop(); return; }
     if ("speechSynthesis" in window) speechSynthesis.cancel();
     rec = new Rec();
-    rec.lang = S.lang === "am" ? "am-ET" : "en-US";
+    rec.lang = SPEECH_LANG[S.lang] || "en-US";
     rec.interimResults = true;
     rec.maxAlternatives = 1;
     const target = activeInput();
@@ -172,7 +298,10 @@
       for (const r of ev.results) (r.isFinal ? (finalText = r[0].transcript) : (interim += r[0].transcript));
       if (target) target.value = finalText || interim;
     };
-    rec.onerror = (e) => { if (e.error !== "no-speech" && e.error !== "aborted") toast(`Mic: ${e.error}`); };
+    rec.onerror = (e) => {
+      if (e.error === "language-not-supported") toast(L("noSpeech"));
+      else if (e.error !== "no-speech" && e.error !== "aborted") toast(`Mic: ${e.error}`);
+    };
     rec.onend = () => {
       rec = null; $("#btnMic").classList.remove("listening"); $("#wave").classList.remove("on");
       if (finalText.trim()) sendMessage(finalText.trim());
@@ -320,7 +449,8 @@
   function fmtDate(iso) {
     if (!iso) return "";
     const d = new Date(iso + "T00:00:00");
-    return d.toLocaleDateString(S.lang === "am" ? "am-ET" : "en-US", { year: "numeric", month: "short", day: "numeric" });
+    const opts = { year: "numeric", month: "short", day: "numeric" };
+    try { return d.toLocaleDateString(SPEECH_LANG[S.lang] || "en-US", opts); } catch { return d.toLocaleDateString("en-US", opts); }
   }
   function showReview() {
     show("review"); journey("review");
@@ -390,8 +520,12 @@
 
   // ------------------------------------------------------------------ wiring
   function init() {
+    try { const saved = localStorage.getItem("lang"); if (saved && UI[saved]) S.lang = saved; } catch {}
     applyI18n();
-    $$(".lang-toggle button").forEach((b) => b.addEventListener("click", () => { S.lang = b.dataset.lang; applyI18n(); }));
+    $("#langSelect").addEventListener("change", (e) => {
+      S.lang = e.target.value; applyI18n();
+      try { localStorage.setItem("lang", S.lang); } catch {}
+    });
     $("#btnCreate").addEventListener("click", beginCall);
     $("#btnPromo").addEventListener("click", beginCall);
     $$(".demo-only").forEach((b) => b.addEventListener("click", () => toast(L("demoOnly"))));
@@ -401,7 +535,7 @@
     $("#ccCam").addEventListener("click", () => (S.stream ? stopCamera() : startCamera()));
     $("#ccCaptions").addEventListener("click", (e) => { S.captions = !S.captions; e.currentTarget.classList.toggle("off", !S.captions); $("#bubble").classList.toggle("hidden", !S.captions); });
 
-    $("#btnStart").addEventListener("click", () => sendMessage(S.lang === "am" ? "አዎ" : "Yes, let's get started"));
+    $("#btnStart").addEventListener("click", () => sendMessage(L("yesMsg")));
     $("#btnMic").addEventListener("click", listen);
     $$("[data-speak]").forEach((b) => b.addEventListener("click", listen));
     $("#formText").addEventListener("submit", (e) => { e.preventDefault(); sendMessage($("#inText").value.trim()); });

@@ -4,8 +4,8 @@ An AI assistant that opens a bank account over a "video call", built with **Pyth
 
 | # | Screen | What happens |
 |---|--------|--------------|
-| 1 | Super App home | Tap **Create Account** (EN / አማርኛ toggle) |
-| 2 | Video call starts | The AI avatar greets the customer in English or Amharic (speech synthesis) |
+| 1 | Super App home | Pick a language, then tap **Create Account** |
+| 2 | Video call starts | The AI avatar greets the customer in the chosen language (speech synthesis) |
 | 3 | Q1 – Full name | The customer speaks (browser speech-to-text) or types |
 | 4 | Q2 – Date of birth | Say it or pick it from a date picker. Must be 18 or older |
 | 5 | Q3 – Birth city | Then nationality and account type (chips, typing or voice) |
@@ -14,6 +14,23 @@ An AI assistant that opens a bank account over a "video call", built with **Pyth
 | 8 | Review | Shows the details retrieved from the National ID registry and flags anything that differs from the customer's answers |
 | 9 | Creating account | Progress checklist |
 | 10 | Success | Account number (copy button), account type, download of the account details |
+
+## Languages
+
+| Code | Language | Assistant script | App screens | Voice input / output* |
+|------|----------|:---:|:---:|---|
+| `en` | English | ✅ | ✅ | ✅ / ✅ |
+| `am` | አማርኛ Amharic | ✅ | ✅ | ✅ Chrome / depends on installed voices |
+| `om` | Afaan Oromoo | ✅ | ✅ | limited – customers can type |
+| `ti` | ትግርኛ Tigrinya | ✅ | ✅ | limited – customers can type |
+| `so` | Soomaali | ✅ | ✅ | partial (Edge / Chrome) |
+| `aa` | Qafar af (Afar) | ⚠️ draft | ⚠️ draft | limited – customers can type |
+
+\* Voice support comes from the browser's Web Speech API. When a browser has no voice for a language, the avatar still animates and the subtitles show the text.
+
+The assistant script lives in `bank_assistant/messages.py` and the app screens in `UI` in `public/app.js`. The parser also understands answers in each language, for example "Maqaan koo … dha", "Magacaygu waa …", "ስመይ … እዩ", city names such as Finfinnee, Jigjiga and መቐለ, and account words such as qusannaa and kaydin. With an LLM key set, the model accepts free-form answers in any of these languages and replies in the customer's language.
+
+> **Translation review:** have native speakers check the Oromo, Tigrinya and Somali texts before go-live. The **Afar** texts are a first draft and must be reviewed by a native Afar speaker.
 
 ## Architecture
 

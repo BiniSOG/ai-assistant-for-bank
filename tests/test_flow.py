@@ -87,3 +87,45 @@ def test_underage():
 def test_fan_spoken():
     assert v.parse_fan("one two three four five six seven eight nine zero one two").value == "123456789012"
     assert not v.parse_fan("12345").ok
+
+
+LANGS = ["en", "am", "om", "ti", "so", "aa"]
+
+
+def test_every_language_has_every_message():
+    from bank_assistant.messages import ACKS, LANGUAGES, MESSAGES
+
+    assert set(MESSAGES) == set(LANGUAGES) == set(ACKS) == set(LANGS)
+    for lang, table in MESSAGES.items():
+        assert set(table) == set(MESSAGES["en"]), lang
+
+
+@pytest.mark.parametrize(
+    "lang,yes,name,city,nationality,account",
+    [
+        ("om", "Eeyyee", "Maqaan koo Caalaa Tolaa Gammachuu dha", "Finfinnee", "Itoophiyaa", "Qusannaa"),
+        ("ti", "እወ", "ስመይ ሃብቶም ገብረመድህን ተስፋይ እዩ", "መቐለ", "ኢትዮጵያዊ", "ቁጠባ"),
+        ("so", "Haa", "Magacaygu waa Cabdi Maxamed Cali", "Waxaan ku dhashay Jigjiga", "Itoobiyaan", "Kaydin"),
+        ("aa", "Ey", "Yi migaq Ali Mohammed Ahmed", "Samara", "Ethiopian", "Savings"),
+    ],
+)
+def test_flow_in_new_languages(lang, yes, name, city, nationality, account):
+    from bank_assistant.messages import MESSAGES
+
+    res = post("/api/session/start", {"lang": lang})
+    assert res["reply"] == MESSAGES[lang]["greeting"]
+    res = say(res, yes)
+    assert res["view"]["step"] == "full_name"
+    for answer in (name, "1995-03-20", city, nationality, account):
+        res = say(res, answer)
+    v = res["view"]
+    assert v["step"] == "fan", res["reply"]
+    assert v["account_type"] == "Savings Account"
+    assert v["nationality"] == "Ethiopian"
+    res = say(res, "9999 8888 7777")
+    assert res["view"]["step"] == "otp"
+    assert "{phone}" not in res["reply"] and res["extra"]["phone"] in res["reply"]
+
+
+def test_unknown_language_rejected():
+    assert client.post("/api/session/start", json={"lang": "xx"}).status_code == 422

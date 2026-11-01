@@ -39,14 +39,22 @@
     <!-- ========== 1. HOME ========== -->
     <section class="screen active" id="screen-home">
       <header class="home-hero">
-        <div class="statusbar"><span>12:00</span><span class="sb-icons">▂▄▆ ◔</span></div>
+        <div class="statusbar"><span>12:00</span></div>
         <div class="brand center">
           <svg class="logo" viewBox="0 0 48 40" aria-hidden="true"><path d="M4 36 22 4l8 14-10 18z" fill="#f5b400"/><path d="M20 36 34 12l10 24z" fill="#fff"/><path d="M26 36 34 22l6 14z" fill="#1d4ed8"/></svg>
           <div class="brand-text"><b>Dashen Bank</b><span>Dashen Bank</span></div>
         </div>
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button data-lang="en" class="on">EN</button><button data-lang="am">አማ</button>
-        </div>
+        <label class="lang-select">
+          <span aria-hidden="true">🌐</span>
+          <select id="langSelect" aria-label="Language / ቋንቋ / Afaan / Luqadda">
+            <option value="en">English</option>
+            <option value="am">አማርኛ</option>
+            <option value="om">Afaan Oromoo</option>
+            <option value="ti">ትግርኛ</option>
+            <option value="so">Soomaali</option>
+            <option value="aa">Qafar af</option>
+          </select>
+        </label>
         <h1 data-i18n="welcome">Welcome to<br />Dashen Bank<br />Super App</h1>
       </header>
       <div class="home-body">

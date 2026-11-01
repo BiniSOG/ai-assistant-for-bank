@@ -20,14 +20,14 @@ from fastapi.staticfiles import StaticFiles  # noqa: E402
 from pydantic import BaseModel, Field  # noqa: E402
 
 from bank_assistant import agent  # noqa: E402
-from bank_assistant.state import InvalidState, OnboardingState, load, sign  # noqa: E402
+from bank_assistant.state import InvalidState, Lang, OnboardingState, load, sign  # noqa: E402
 from bank_assistant.validators import format_fan  # noqa: E402
 
 app = FastAPI(title="Dashen Bank AI Account Assistant", version="1.0.0")
 
 
 class StartRequest(BaseModel):
-    lang: Literal["en", "am"] = "en"
+    lang: Lang = "en"
 
 
 class SignedRequest(BaseModel):

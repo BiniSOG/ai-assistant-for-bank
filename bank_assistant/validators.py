@@ -32,15 +32,27 @@ class Parsed:
 _AFFIRM = {
     "yes", "yeah", "yep", "yup", "sure", "ok", "okay", "start", "go", "ready",
     "let's", "lets", "please", "of course", "absolutely", "alright", "fine",
-    "አዎ", "እሺ", "አዎን", "ጀምር", "እንጀምር",
+    "አዎ", "እሺ", "አዎን", "ጀምር", "እንጀምር",                       # Amharic
+    "eeyyee", "eeyye", "eeyyeen", "tole", "jalqabnu",              # Afaan Oromo
+    "እወ", "ሕራይ", "ንጀምር",                                       # Tigrinya
+    "haa", "haye", "waayahay", "bilowno", "bilaabno",              # Somali
+    "ey", "qimbisna", "qimbisnay",                                 # Afar
 }
-_DENY = {"no", "nope", "not now", "later", "stop", "cancel", "አይ", "አልፈልግም", "አይደለም"}
+_DENY = {
+    "no", "nope", "not now", "later", "stop", "cancel",
+    "አይ", "አልፈልግም", "አይደለም",                                   # Amharic
+    "lakki", "hin barbaadu",                                       # Afaan Oromo
+    "ኣይፋል", "ኣይደልን", "ኣይፋልን",                                 # Tigrinya
+    "maya", "hadda maya",                                          # Somali
+    "hinna", "maleh",                                              # Afar
+}
 
 
 def yes_no(text: str) -> str | None:
     t = (text or "").strip().lower()
     words = set(re.findall(rf"[a-z']+|[{ETHIOPIC}]+", t))
-    if any(p in t for p in ("not now", "no thanks", "no thank")) or words & _DENY:
+    phrases = [p for p in _DENY if " " in p]
+    if any(p in t for p in ("not now", "no thanks", "no thank", *phrases)) or words & _DENY:
         return "deny"
     if words & _AFFIRM or any(p in t for p in ("let's go", "of course", "get started")):
         return "affirm"
@@ -50,7 +62,12 @@ def yes_no(text: str) -> str | None:
 # --------------------------------------------------------------------------- full name
 _NAME_PREFIXES = re.compile(
     r"^(?:hi|hello|hey|selam|ሰላም)?[,!. ]*"
-    r"(?:my (?:full )?name is|my name's|i am|i'm|im|it is|it's|this is|call me|name:|ስሜ|ሙሉ ስሜ)\s*",
+    r"(?:my (?:full )?name is|my name's|i am|i'm|im|it is|it's|this is|call me|name|ስሜ|ሙሉ ስሜ"
+    r"|maqaan (?:koo|kiyya)(?: guutuun)?|ani"          # Afaan Oromo
+    r"|ስመይ|ምሉእ ስመይ"                                   # Tigrinya
+    r"|magacayg(?:u|a)(?: oo buuxa)?(?: waa)?|waxaan ahay|waa"  # Somali
+    r"|yi migaq(?: inkih)?)"                            # Afar
+    r"(?=[\s:,]|$)[\s:,]*",  # whole words only, so "Imran" / "Anissa" are not trimmed
     re.IGNORECASE,
 )
 
@@ -58,7 +75,7 @@ _NAME_PREFIXES = re.compile(
 def parse_full_name(text: str) -> Parsed:
     t = (text or "").strip()
     t = _NAME_PREFIXES.sub("", t).strip()
-    t = re.sub(r"\s+(?:ነው|ይባላል)[.!።]*$", "", t)
+    t = re.sub(r"\s+(?:ነው|ይባላል|እዩ|ይበሃል|dha|jedhama|kinni)[.!።]*$", "", t)
     t = re.sub(r"[.!?,።]+$", "", t).strip()
     t = re.sub(r"\s+", " ", t)
     if not re.fullmatch(rf"[A-Za-z{ETHIOPIC}'\-. ]+", t or "-"):
@@ -144,9 +161,22 @@ _CITY_ALIASES = {
     "ባህር ዳር": "Bahir Dar", "ጎንደር": "Gondar", "መቀሌ": "Mekelle", "ሀዋሳ": "Hawassa",
     "አዳማ": "Adama", "ናዝሬት": "Adama", "nazret": "Adama", "awassa": "Hawassa",
     "ጅማ": "Jimma", "ደሴ": "Dessie", "ሐረር": "Harar", "debre zeit": "Bishoftu",
+    # Afaan Oromo
+    "finfinnee": "Addis Ababa", "adaamaa": "Adama", "jimmaa": "Jimma", "hawaasaa": "Hawassa",
+    "bishooftuu": "Bishoftu", "naqamtee": "Nekemte", "amboo": "Ambo", "harar": "Harar",
+    "dirree dawaa": "Dire Dawa", "shaashamannee": "Shashemene", "asallaa": "Assela",
+    # Tigrinya
+    "መቐለ": "Mekelle", "ኣክሱም": "Axum", "ዓዲግራት": "Adigrat", "ኣዲስ ኣበባ": "Addis Ababa",
+    "ሽረ": "Shire", "ዓድዋ": "Adwa",
+    # Somali
+    "jigjiga": "Jijiga", "diridhabe": "Dire Dawa", "diridhaba": "Dire Dawa", "godey": "Gode",
+    "qabridahar": "Kebri Dahar", "dhagaxbuur": "Degehabur", "addis ababa": "Addis Ababa",
+    # Afar
+    "samara": "Semera", "asayta": "Asaita", "aysaqiita": "Asaita", "awsi": "Asaita",
 }
 _CITY_PREFIX = re.compile(
-    r"^(?:i was born in|i was born at|born in|i'm from|i am from|from|in|it's|it is|the city is)\s+",
+    r"^(?:i was born in|i was born at|born in|i'm from|i am from|from|in|it's|it is|the city is"
+    r"|waxaan ku dhashay|magaalada)\s+",
     re.IGNORECASE,
 )
 
@@ -154,7 +184,7 @@ _CITY_PREFIX = re.compile(
 def parse_city(text: str) -> Parsed:
     t = (text or "").strip()
     t = _CITY_PREFIX.sub("", t)
-    t = re.sub(r"\s+(?:ነው|ተወለድኩ)[.!።]*$", "", t)
+    t = re.sub(r"\s+(?:ነው|ተወለድኩ|እዩ|ተወሊደ|dha|tti dhaladhe|keessatti dhaladhe)[.!።]*$", "", t)
     t = re.sub(r"(?:city|ከተማ)$", "", t, flags=re.IGNORECASE)
     t = re.sub(r"[.!?,።]+$", "", t).strip()
     if not t or len(t) > 60 or not re.fullmatch(rf"[A-Za-z{ETHIOPIC}'\-. ]+", t):
@@ -176,6 +206,10 @@ _NATIONALITIES = {
     "sudan": "Sudanese", "sudanese": "Sudanese", "usa": "American",
     "united states": "American", "american": "American", "uk": "British",
     "british": "British", "united kingdom": "British",
+    "itoophiyaa": "Ethiopian", "itiyoophiyaa": "Ethiopian", "itoophiyaawaa": "Ethiopian",
+    "itoobiya": "Ethiopian", "itoobiyaan": "Ethiopian", "itiyoophiya": "Ethiopian",
+    "ኤርትራ": "Eritrean", "ኤርትራዊ": "Eritrean", "ኤርትራዊት": "Eritrean",
+    "soomaali": "Somali", "soomaaliya": "Somali", "jabuuti": "Djiboutian", "kenyaan": "Kenyan",
 }
 
 
@@ -199,10 +233,12 @@ ACCOUNT_TYPES = [
     "Fixed Time Deposit",
 ]
 _ACCOUNT_KEYWORDS = [
-    (("interest free", "interest-free", "wadiah", "wadia", "islamic", "ከወለድ ነፃ", "ወለድ አልባ"), 2),
-    (("fixed", "time deposit", "term deposit", "ጊዜ ገደብ"), 3),
-    (("current", "checking", "cheque", "check", "business", "ተንቀሳቃሽ"), 1),
-    (("saving", "savings", "save", "ቁጠባ"), 0),
+    (("interest free", "interest-free", "wadiah", "wadia", "islamic", "ከወለድ ነፃ", "ወለድ አልባ",
+      "ብዘይ ወለድ", "dhala malee", "ribo la'aan", "ribo lahayn", "ribo"), 2),
+    (("fixed", "time deposit", "term deposit", "ጊዜ ገደብ", "ግዜ ገደብ", "yeroo murtaa", "muddo go"), 3),
+    (("current", "checking", "cheque", "check", "business", "ተንቀሳቃሽ", "ተንቀሳቓሲ",
+      "deddeebii", "socda"), 1),
+    (("saving", "savings", "save", "ቁጠባ", "qusannaa", "kaydin", "keydin", "qusba"), 0),
 ]
 
 
